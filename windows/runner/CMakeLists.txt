@@ -22,13 +22,12 @@ target_sources(${BINARY_NAME} PRIVATE
   "${CMAKE_CURRENT_BINARY_DIR}/flutter/generated_plugin_registrant.cc"
 )
 
-# === Apply standard settings inline ===
+# === Inline settings (fix for missing apply_standard_settings) ===
 target_compile_features(${BINARY_NAME} PUBLIC cxx_std_17)
 target_compile_options(${BINARY_NAME} PRIVATE /W4 /WX /wd"4100")
 target_compile_options(${BINARY_NAME} PRIVATE /EHsc)
 target_compile_definitions(${BINARY_NAME} PRIVATE "_HAS_EXCEPTIONS=0")
 target_compile_definitions(${BINARY_NAME} PRIVATE "$<$<CONFIG:Debug>:_DEBUG>")
-# =====================================
+# =================================================================
 
-# Link against Flutter engine and plugin wrapper
 target_link_libraries(${BINARY_NAME} PRIVATE flutter flutter_wrapper_plugin)
